@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Codewars_Band_Name_Generator
@@ -29,11 +30,31 @@ namespace Codewars_Band_Name_Generator
             AssertShouldBe("The System", "system");
         }
 
+        [TestMethod]
+        public void Input_tart_ShouldRetrun_Trartart()
+        {
+            AssertShouldBe("Tartart", "tart");
+        }
+
         private string GetBandName(string noun)
         {
-            var newBand = "The ";
-            newBand += noun.Replace(noun[0], noun[0].ToString().ToUpper()[0]);
-            return newBand;
+            var nounOfCharArray = noun.ToCharArray();
+
+            var firstLetter = nounOfCharArray[0];
+            var endLetter = nounOfCharArray[noun.Length - 1];
+            if (firstLetter == endLetter)
+            {
+                return ChangeFirstLetterToUpper(noun.Replace(noun, noun + noun).Remove(noun.Length, 1));
+            }
+            
+            return "The " + ChangeFirstLetterToUpper(noun);
+        }
+
+        private string ChangeFirstLetterToUpper(string noun)
+        {
+            var nounOfCharArray = noun.ToCharArray();
+            nounOfCharArray[0] = Char.ToUpper(nounOfCharArray[0]);
+            return String.Concat(nounOfCharArray);
         }
     }
 }
