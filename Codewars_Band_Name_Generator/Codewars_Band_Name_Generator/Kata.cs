@@ -38,16 +38,17 @@ namespace Codewars_Band_Name_Generator
 
         private string GetBandName(string noun)
         {
-            var nounOfCharArray = noun.ToCharArray();
-
-            var firstLetter = nounOfCharArray[0];
-            var endLetter = nounOfCharArray[noun.Length - 1];
-            if (firstLetter == endLetter)
+            if (IsFristAndLastLetterSame(noun))
             {
                 return ChangeFirstLetterToUpper(noun.Replace(noun, noun + noun).Remove(noun.Length, 1));
             }
             
             return "The " + ChangeFirstLetterToUpper(noun);
+        }
+
+        private static bool IsFristAndLastLetterSame(string noun)
+        {
+            return noun[0] == noun[noun.Length - 1];
         }
 
         private string ChangeFirstLetterToUpper(string noun)
