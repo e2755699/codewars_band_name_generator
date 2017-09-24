@@ -38,7 +38,7 @@ namespace Codewars_Band_Name_Generator
 
         private string GetBandName(string noun)
         {
-            if (IsFristAndLastLetterSame(noun))
+            if (AreFirstEqualLastLetter(noun))
             {
                 return ChangeFirstLetterToUpper(noun.Replace(noun, noun + noun).Remove(noun.Length, 1));
             }
@@ -46,7 +46,7 @@ namespace Codewars_Band_Name_Generator
             return "The " + ChangeFirstLetterToUpper(noun);
         }
 
-        private static bool IsFristAndLastLetterSame(string noun)
+        private static bool AreFirstEqualLastLetter(string noun)
         {
             return noun[0] == noun[noun.Length - 1];
         }
